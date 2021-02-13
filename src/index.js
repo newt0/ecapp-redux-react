@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import createStore from "./reducks/store/store";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+export const store = createStore();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+// ## react-reduxのProviderとは
+// 1.propsにstoreを渡す
+// ->ラップしたコンポーネントにstoreの情報を渡す
+// 2.Reactコンポーネント内でreact-reduxのconnect関数を使えるようにする
+// ->ReactとReduxを接続してstoreを変更できるように
+
+// store.jsで定義したcreateStore関数を実行することで初めてStoreが作成される
+
+// <Provider>のpropsにstoreを渡し,<App/>をラッピングすることでStoreの情報を参照可能になる
