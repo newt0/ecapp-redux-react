@@ -2,15 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import createStore from "./reducks/store/store";
+import * as History from "history";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ConnectedRouter } from "connected-react-router";
 
-export const store = createStore();
+const history = History.createBrowserHistory();
+export const store = createStore(history);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );
@@ -29,3 +34,7 @@ reportWebVitals();
 // store.jsで定義したcreateStore関数を実行することで初めてStoreが作成される
 
 // <Provider>のpropsにstoreを渡し,<App/>をラッピングすることでStoreの情報を参照可能になる
+
+// HistoryからcreateBrowserHistoryメソッドを使用したいので別名import。
+// createBrowserHistoryでブラウザの履歴を作成し、historyという定数に格納。
+// そのhistoryをcreateStoreの引数に渡す

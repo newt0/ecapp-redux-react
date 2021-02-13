@@ -1,8 +1,16 @@
-import { createStore as reduxCreateStore, combineReducers } from "redux";
+import {
+  createStore as reduxCreateStore,
+  combineReducers,
+  applyMiddleware,
+} from "redux";
 import { UsersReducer } from "../users/reducers";
+import { connectRouter, routerMiddleware } from "connected-react-router";
 
-export default function createStore() {
-  return reduxCreateStore(combineReducers({ users: UsersReducer }));
+export default function createStore(history) {
+  return reduxCreateStore(
+    combineReducers({ router: connectRouter(history), users: UsersReducer }),
+    applyMiddleware(routerMiddleware(history))
+  );
 }
 
 // ## 1. reduxモジュールのimport
@@ -18,3 +26,15 @@ export default function createStore() {
 // 1.分割したReducersをまとめる
 // 2.stateのカテゴリ別
 // 3.オブジェクトをreturnする（stateのデータ構造）
+
+// ## ルーティング用ライブラリ
+// 1.react-router v4以降
+// Reactのルーティング用ライブラリ
+// 2.connected-react-router
+// ReduxのStoreでルーティングを管理
+// react-router v4,v5と互換性あり
+
+// ReduxのStoreにrouterというStateを作る。
+// ->routerというキーを作り、connectRouter(history)を渡す。
+// ->historyが保持する情報をReduxのStoreのrouterというStateで管理できるように
+// routerをmiddlewareとして使うという宣言
