@@ -1,5 +1,5 @@
 import "./App.css";
-import { Router } from "react-router";
+import Router from "./Router";
 
 const App = () => {
   return (
@@ -11,4 +11,6 @@ const App = () => {
 
 export default App;
 
-// error: import { Router } from "react-router":にしていた
+// error:
+// ->import { Router } from "react-router":にしていた
+// ->ReactとReduxのStoreの繋ぎこみのミスかと思ったが、App.js内で<Router/>をコメントアウトしたらエラー吐かなくなったため原因が推測できる
