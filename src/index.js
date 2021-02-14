@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import createStore from "./reducks/store/store";
 import * as History from "history";
+import { Provider } from "react-redux";
+import { createStore } from "./reducks/store/store";
+import { ConnectedRouter } from "connected-react-router";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ConnectedRouter } from "connected-react-router";
 
 const history = History.createBrowserHistory();
 export const store = createStore(history);
