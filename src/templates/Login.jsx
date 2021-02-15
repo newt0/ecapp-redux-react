@@ -11,7 +11,7 @@ const Login = () => {
   return (
     <div>
       <h2>ログインページ</h2>
-      <button onClick={() => dispatch(signIn)}>ログイン</button>
+      <button onClick={() => dispatch(signIn())}>ログイン</button>
     </div>
   );
 };
