@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <div>
       <h2>Homeページ</h2>
-      <p>{uid}</p>
-      <p>username{username}</p>
+      <p>uid:{uid}</p>
+      <p>username:{username}</p>
     </div>
   );
 };

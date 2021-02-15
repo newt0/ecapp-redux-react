@@ -7,7 +7,7 @@ export const signIn = () => {
     const isSignedIn = state.users.isSignedIn;
 
     if (!isSignedIn) {
-      const url = "https://api.github.com/users/deatiger";
+      const url = "https://api.github.com/users/newt0";
 
       const response = await fetch(url)
         .then((res) => res.json())
