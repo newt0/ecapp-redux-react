@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { getUserId } from "../reducks/users/selectors";
 
 const Home = () => {
-  const selector = useSelector((state) => state.uid);
+  const selector = useSelector((state) => state);
   const uid = getUserId(selector);
 
   return (
