@@ -1,25 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { push } from "connected-react-router";
-import { signInAction } from "../reducks/users/actions";
+import { signIn } from "../reducks/users/operations";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state);
+  // const selector = useSelector((state) => state);
 
-  console.log(selector.router);
+  // console.log(selector.router);
 
   return (
     <div>
       <h2>ログインページ</h2>
-      <button
-        onClick={() => {
-          dispatch(signInAction({ uid: "222222222", username: "newt02" }));
-          dispatch(push("/"));
-        }}
-      >
-        ログイン
-      </button>
+      <button onClick={() => dispatch(signIn)}>ログイン</button>
     </div>
   );
 };
