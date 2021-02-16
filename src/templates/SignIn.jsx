@@ -51,7 +51,7 @@ const SignIn = (props) => {
       <div className="module-spacer--medium" />
       <PrimaryButton
         label={"サインインする"}
-        onChange={() => {
+        onClick={() => {
           dispatch(signIn(email, password));
         }}
       />
