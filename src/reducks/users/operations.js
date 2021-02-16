@@ -105,6 +105,35 @@ export const signIn = (email, password) => {
   };
 };
 
+export const listenAuthState = () => {
+  return async (dispatch) => {
+    return auth.onAuthStateChanged((user) => {
+      if (user) {
+        // ユーザーが認証されている状態ならそのユーザーの情報をデータベースから取得してReduxのStoreにStateを持たせる
+        const uid = user.uid;
+
+        db.collection("users")
+          .doc(uid)
+          .get()
+          .then((snapshot) => {
+            const data = snapshot.data();
+
+            dispatch(
+              signInAction({
+                isSignedIn: true,
+                uid: uid,
+                username: data.username,
+                role: data.role,
+              })
+            );
+          });
+      } else {
+        dispatch(push("/signin"));
+      }
+    });
+  };
+};
+
 // callback関数をreturnする。asyncをつける。
 // 引数にdispatchとgetStateを受け取る
 // getStateで現在のReduxのstateを受け取って、stateという定数に格納。getStateはメソッドで呼び出す点に注意
