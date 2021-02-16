@@ -143,6 +143,27 @@ export const signOut = () => {
   };
 };
 
+export const resetPassword = (email) => {
+  return async (dispatch) => {
+    if (email === "") {
+      alert("必須項目が未入力です");
+      return false;
+    } else {
+      auth
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          alert(
+            "入力されたアドレスにパスワードリセット用のメールを送信しました"
+          );
+          dispatch(push("/signin"));
+        })
+        .catch(() =>
+          alert("パスワードリセットに失敗しました。通信環境をご確認ください。")
+        );
+    }
+  };
+};
+
 // callback関数をreturnする。asyncをつける。
 // 引数にdispatchとgetStateを受け取る
 // getStateで現在のReduxのstateを受け取って、stateという定数に格納。getStateはメソッドで呼び出す点に注意
