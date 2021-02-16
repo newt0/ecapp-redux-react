@@ -1,4 +1,4 @@
-import { signInAction } from "./actions";
+import { signInAction, signOutAction } from "./actions";
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
@@ -130,6 +130,15 @@ export const listenAuthState = () => {
       } else {
         dispatch(push("/signin"));
       }
+    });
+  };
+};
+
+export const signOut = () => {
+  return async (dispatch) => {
+    auth.signOut().then(() => {
+      dispatch(signOutAction()); // ReduxのStoreを初期状態に戻す
+      dispatch(push("/signin"));
     });
   };
 };
