@@ -5,6 +5,7 @@ const initialState = {
     isSignedIn: false,
     uid: "",
     username: "",
+    role: "",
   },
 };
 
