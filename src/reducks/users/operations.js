@@ -51,7 +51,7 @@ export const signUp = (username, email, password, confirmPassword) => {
       .then((result) => {
         const user = result.user; // resultはuserという値を持っているため、定数に格納
         if (user) {
-          const uid = user.id;
+          const uid = user.uid;
           const timestamp = FirebaseTimestamp.now();
 
           const userInitialData = {
@@ -66,7 +66,7 @@ export const signUp = (username, email, password, confirmPassword) => {
           db.collection("users")
             .doc(uid)
             .set(userInitialData)
-            .then(() => dispatch(push("/")));
+            .then(() => dispatch(push()));
           // doc(uid) -> usersコレクションのuidとAuthのuidを一致させる
         }
       });
