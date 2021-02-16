@@ -1,7 +1,10 @@
 import React, { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import { PrimaryButton, TextInput } from "../components/UIkit";
+import { signUp } from "../reducks/users/operations";
 
 const SignUp = (props) => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState(""),
     [email, setEmail] = useState(""),
     [password, setPassword] = useState(""),
@@ -56,7 +59,7 @@ const SignUp = (props) => {
         rows={1}
         value={email}
         type={"email"}
-        onChange={inputEmail} // 関数名のまま渡すことに注意
+        onChange={inputEmail}
       />
       <TextInput
         fullWidth={true}
@@ -67,7 +70,7 @@ const SignUp = (props) => {
         rows={1}
         value={password}
         type={"password"}
-        onChange={inputPassword} // 関数名のまま渡すことに注意
+        onChange={inputPassword}
       />
       <TextInput
         fullWidth={true}
@@ -78,7 +81,7 @@ const SignUp = (props) => {
         rows={1}
         value={confirmPassword}
         type={"password"}
-        onChange={inputConfirmPassword} // 関数名のまま渡すことに注意
+        onChange={inputConfirmPassword}
       />
 
       <div className="module-spacer--medium" />
@@ -86,7 +89,9 @@ const SignUp = (props) => {
       <div className="center">
         <PrimaryButton
           label={"アカウントを登録する"}
-          onClick={() => console.log("Clicked.")}
+          onClick={() =>
+            dispatch(signUp(username, email, password, confirmPassword))
+          }
         />
       </div>
     </div>
