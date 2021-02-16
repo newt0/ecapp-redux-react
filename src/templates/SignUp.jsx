@@ -80,6 +80,9 @@ const SignUp = (props) => {
         type={"password"}
         onChange={inputConfirmPassword} // 関数名のまま渡すことに注意
       />
+
+      <div className="module-spacer--medium" />
+
       <div className="center">
         <PrimaryButton
           label={"アカウントを登録する"}
