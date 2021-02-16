@@ -14,6 +14,8 @@ const useStyles = makeStyles({
 });
 
 const PrimaryButton = (props) => {
+  const classes = useStyles();
+
   return (
     <Button
       className={classes.button}
