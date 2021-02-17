@@ -45,9 +45,7 @@ const ProductEdit = () => {
 
   return (
     <div>
-      <h2 u-text__headline u-text-center>
-        商品の登録・編集
-      </h2>
+      <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
       <div className="c-section-container">
         <TextInput
           fullWidth={true}
