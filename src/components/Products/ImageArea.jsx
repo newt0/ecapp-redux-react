@@ -51,7 +51,7 @@ const ImageArea = (props) => {
               className="u-display-none"
               type="file"
               id="image"
-              onChange={(event) => uploadImage(event.target.value)}
+              onChange={(event) => uploadImage(event)}
             />
           </label>
         </IconButton>
