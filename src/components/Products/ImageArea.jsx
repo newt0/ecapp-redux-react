@@ -14,6 +14,7 @@ const useStyles = makeStyles({
 
 const ImageArea = (props) => {
   const classes = useStyles();
+  const images = props.images;
 
   const uploadImage = useCallback(
     (event) => {
@@ -44,8 +45,8 @@ const ImageArea = (props) => {
   return (
     <div>
       <div className="p-grid__list-images">
-        {props.images.length > 0 &&
-          props.images.map((image) => (
+        {images.length > 0 &&
+          images.map((image) => (
             <ImagePreview id={image.id} path={image.path} key={image.id} />
             // propsで渡ってきたimages自体が、newImageにある通りオブジェクトの形になっている
           ))}
