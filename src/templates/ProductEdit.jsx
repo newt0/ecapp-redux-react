@@ -22,20 +22,6 @@ const ProductEdit = () => {
     [setDescription]
   );
 
-  const inputCategory = useCallback(
-    (event) => {
-      setCategory(event.target.value);
-    },
-    [setCategory]
-  );
-
-  const inputGender = useCallback(
-    (event) => {
-      setGender(event.target.value);
-    },
-    [setGender]
-  );
-
   const inputPrice = useCallback(
     (event) => {
       setPrice(event.target.value);
@@ -47,6 +33,13 @@ const ProductEdit = () => {
     { id: "tops", name: "トップス" },
     { id: "shirts", name: "シャツ" },
     { id: "pants", name: "パンツ" },
+  ];
+
+  const genders = [
+    { id: "all", name: "全て" },
+    { id: "male", name: "メンズ" },
+    { id: "female", name: "レディース" },
+    { id: "others", name: "その他" },
   ];
 
   return (
@@ -73,16 +66,6 @@ const ProductEdit = () => {
           rows={1}
           type={"text"}
         />
-        <TextInput
-          fullWidth={true}
-          label={"カテゴリー"}
-          multiline={false}
-          required={true}
-          onChange={inputCategory}
-          value={category}
-          rows={1}
-          type={"text"}
-        />
         <SelectBox
           label={"カテゴリー"}
           required={true}
@@ -90,15 +73,12 @@ const ProductEdit = () => {
           select={setCategory}
           value={category}
         />
-        <TextInput
-          fullWidth={true}
+        <SelectBox
           label={"性別"}
-          multiline={false}
           required={true}
-          onChange={inputGender}
+          options={genders}
+          select={setGender}
           value={gender}
-          rows={1}
-          type={"text"}
         />
         <TextInput
           fullWidth={true}
