@@ -104,4 +104,4 @@ const SignUp = (props) => {
 
 export default SignUp;
 
-// onChangeにsetUsernameを設定したいが、子コンポーネントに変更するための関数を渡す時はuseCallbackフックでその関数をメモ化するとパフォーマンスが良くなる
+// onChangeに直接setUsernameを設定したいが、子コンポーネントに(ReduxのStateを?)変更するための関数を渡す時はuseCallbackフックでその関数をメモ化するとパフォーマンスが良くなる
