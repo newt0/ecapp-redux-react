@@ -3,10 +3,21 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles({
+  formContorl: {
+    marginBottom: 16,
+    minWidth: 128,
+    width: "100%",
+  },
+});
 
 const SelectBox = (props) => {
+  const classes = useStyles();
+
   return (
-    <FormControl>
+    <FormControl className={classes.formContorl}>
       <InputLabel>{props.label}</InputLabel>
       <Select
         required={props.required}
