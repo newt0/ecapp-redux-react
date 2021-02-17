@@ -17,7 +17,7 @@ export const saveProduct = (name, description, category, gender, price) => {
     };
 
     const ref = productsRef.doc();
-    const id = ref.id();
+    const id = ref.id;
     data.id = id;
     data.created_at = timestamp;
 
