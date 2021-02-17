@@ -33,9 +33,12 @@ const ImageArea = (props) => {
       const uploadTask = uploadRef.put(blob);
 
       uploadTask.then(() => {
+        /* eslint-disable */
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
           const newImage = { id: fileName, path: downloadURL };
-          props.setImages((prevState) => [...prevState, newImage]);
+
+          props.setImages((prevState => [...prevState, newImage]));
+          /* eslint-enable */
         });
       });
     },
