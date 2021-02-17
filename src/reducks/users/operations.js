@@ -2,32 +2,6 @@ import { signInAction, signOutAction } from "./actions";
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
-// export const signIn = () => {
-//   return async (dispatch, getState) => {
-//     const state = getState();
-//     const isSignedIn = state.users.isSignedIn;
-
-//     if (!isSignedIn) {
-//       const url = "https://api.github.com/users/newt0";
-
-//       const response = await fetch(url)
-//         .then((res) => res.json())
-//         .catch(() => null);
-
-//       const username = response.login;
-
-//       dispatch(
-//         signInAction({
-//           isSignedIn: true,
-//           uid: "333333",
-//           username: username,
-//         })
-//       );
-//       dispatch(push("/"));
-//     }
-//   };
-// };
-
 export const signUp = (username, email, password, confirmPassword) => {
   return async (dispatch) => {
     // getStateを今回は使わない
