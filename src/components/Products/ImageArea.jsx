@@ -18,7 +18,7 @@ const ImageArea = (props) => {
   const uploadImage = useCallback(
     (event) => {
       const file = event.target.files;
-      let blob = new Blob(file, { type: "images/jpeg" });
+      let blob = new Blob(file, { type: "image/jpeg" });
 
       // Generate random 16 digit trings
       const S =
