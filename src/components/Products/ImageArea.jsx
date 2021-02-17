@@ -16,34 +16,28 @@ const ImageArea = (props) => {
   const classes = useStyles();
   const images = props.images;
 
-  const uploadImage = useCallback(
-    (event) => {
-      const file = event.target.files;
-      let blob = new Blob(file, { type: "image/jpeg" });
+  const uploadImage = useCallback((event) => {
+    const file = event.target.files;
+    let blob = new Blob(file, { type: "image/jpeg" });
 
-      // Generate random 16 digit trings
-      const S =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      const N = 16;
-      const fileName = Array.from(crypto.getRandomValues(new Uint32Array(N)))
-        .map((n) => S[n % S.length])
-        .join("");
+    // Generate random 16 digits strings
+    const S="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const N=16;
+    const fileName = Array.from(crypto.getRandomValues(new Uint32Array(N))).map((n)=>S[n%S.length]).join('')
 
-      const uploadRef = storage.ref("images").child(fileName);
-      const uploadTask = uploadRef.put(blob);
+    const uploadRef = storage.ref('images').child(fileName);
+    const uploadTask = uploadRef.put(blob);
 
-      uploadTask.then(() => {
-        /* eslint-disable */
+    uploadTask.then(() => {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          const newImage = { id: fileName, path: downloadURL };
-
-          props.setImages((prevState => [...prevState, newImage]));
-          /* eslint-enable */
+            const newImage = {id: fileName, path: downloadURL};
+            props.setImages((prevState => [...prevState, newImage]))
         });
-      });
-    },
-    [props.setImages]
-  );
+    }).catch((error) => {
+      console.warn(error)
+    });
+
+}, [props.setImages])
 
   return (
     <div>
@@ -51,7 +45,6 @@ const ImageArea = (props) => {
         {images.length > 0 &&
           images.map((image) => (
             <ImagePreview id={image.id} path={image.path} key={image.id} />
-            // propsで渡ってきたimages自体が、newImageにある通りオブジェクトの形になっている
           ))}
       </div>
       <div className="u-text-right">
