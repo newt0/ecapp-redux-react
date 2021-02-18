@@ -28,7 +28,5 @@ export const saveProduct = (name, description, category, gender, price) => {
       .catch((error) => {
         throw new Error(error);
       });
-
-    return;
   };
 };
