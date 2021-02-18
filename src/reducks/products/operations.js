@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 const productsRef = db.collection("products");
 
 export const saveProduct = (
+  id,
   name,
   description,
   category,
@@ -24,14 +25,16 @@ export const saveProduct = (
       images: images,
     };
 
-    const ref = productsRef.doc();
-    const id = ref.id;
-    data.id = id;
-    data.created_at = timestamp;
+    if (id === "") {
+      const ref = productsRef.doc();
+      const id = ref.id;
+      data.id = id;
+      data.created_at = timestamp;
+    }
 
     return productsRef
       .doc(id)
-      .set(data) // 新規作成だから{merge: true}が不要
+      .set(data, { merge: true }) // 新規作成だから{merge: true}が不要
       .then(dispatch(push("/")))
       .catch((error) => {
         throw new Error(error);

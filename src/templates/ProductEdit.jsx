@@ -57,6 +57,24 @@ const ProductEdit = () => {
     { id: "others", name: "その他" },
   ];
 
+  useEffect(() => {
+    if (id !== "") {
+      db.collection("products")
+        .doc(id)
+        .get()
+        .then((snapshot) => {
+          const data = snapshot.data();
+          console.log(data);
+          setName(data.name);
+          setImages(data.images);
+          setGender(data.Gender);
+          setCategory(data.category);
+          setPrice(data.price);
+          setDescription(data.description);
+        });
+    }
+  }, [id]);
+
   return (
     <div>
       <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
@@ -112,7 +130,15 @@ const ProductEdit = () => {
             label={"商品情報を保存"}
             onClick={() =>
               dispatch(
-                saveProduct(name, description, category, gender, price, images)
+                saveProduct(
+                  id,
+                  name,
+                  description,
+                  category,
+                  gender,
+                  price,
+                  images
+                )
               )
             }
           />
