@@ -3,7 +3,14 @@ import { push } from "connected-react-router";
 
 const productsRef = db.collection("products");
 
-export const saveProduct = (name, description, category, gender, price) => {
+export const saveProduct = (
+  name,
+  description,
+  category,
+  gender,
+  price,
+  images
+) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimestamp.now();
     // 引数に受け取ったname, description, category, gender, priceをdataのname, description, category, gender, price（キー）の値として格納
@@ -14,6 +21,7 @@ export const saveProduct = (name, description, category, gender, price) => {
       name: name,
       price: parseInt(price, 10), // 文字列で受け取った数値を10進数に変える
       updated_at: timestamp,
+      images: images,
     };
 
     const ref = productsRef.doc();

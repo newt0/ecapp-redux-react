@@ -75,15 +75,15 @@ const ProductEdit = () => {
         />
         <SelectBox
           label={"カテゴリー"}
-          required={true}
           options={categories}
+          required={true}
           select={setCategory}
           value={category}
         />
         <SelectBox
           label={"性別"}
-          required={true}
           options={genders}
+          required={true}
           select={setGender}
           value={gender}
         />
@@ -102,7 +102,9 @@ const ProductEdit = () => {
           <PrimaryButton
             label={"商品情報を保存"}
             onClick={() =>
-              dispatch(saveProduct(name, description, category, gender, price))
+              dispatch(
+                saveProduct(name, description, category, gender, price, images)
+              )
             }
           />
         </div>
