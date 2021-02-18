@@ -3,7 +3,11 @@ import React from "react";
 const ImagePreview = (props) => {
   return (
     <div className="p-media__thumb">
-      <img src={props.path} alt="プレビュー画像" id={props.id} />
+      <img
+        src={props.path}
+        alt="プレビュー画像"
+        onClick={() => props.delete(props.id)}
+      />
     </div>
   );
 };
