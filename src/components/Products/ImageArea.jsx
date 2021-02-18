@@ -14,6 +14,7 @@ const useStyles = makeStyles({
 
 const ImageArea = (props) => {
   const classes = useStyles();
+  const images = props.images;
 
   const deleteImage = useCallback(
     async (id) => {
@@ -21,12 +22,13 @@ const ImageArea = (props) => {
       if (!ret) {
         return false;
       } else {
-        const newImages = props.images.filter((image) => image.id !== id);
+        const newImages = images.filter((image) => image.id !== id);
         props.setImages(newImages);
         return storage.ref("images").child(id).delete();
       }
     },
-    [props]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [images]
   );
 
   const uploadImage = useCallback(
@@ -47,6 +49,7 @@ const ImageArea = (props) => {
 
       uploadTask
         .then(() => {
+          // Handle successful uploads on complete
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             const newImage = { id: fileName, path: downloadURL };
             props.setImages((prevState) => [...prevState, newImage]);
@@ -56,18 +59,19 @@ const ImageArea = (props) => {
           console.warn(error);
         });
     },
-    [props]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [props.setImages]
   );
 
   return (
     <div>
       <div className="p-grid__list-images">
-        {props.images.length > 0 &&
-          props.images.map((image) => (
+        {images.length > 0 &&
+          images.map((image) => (
             <ImagePreview
-              path={image.path}
               delete={deleteImage}
-              id={props.id}
+              id={image.id}
+              path={image.path}
               key={image.id}
             />
           ))}
@@ -81,7 +85,7 @@ const ImageArea = (props) => {
               className="u-display-none"
               type="file"
               id="image"
-              onChange={(event) => uploadImage(event)}
+              onChange={(e) => uploadImage(e)}
             />
           </label>
         </IconButton>
