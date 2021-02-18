@@ -13,6 +13,7 @@ const Auth = ({ children }) => {
     if (!isSignedIn) {
       dispatch(listenAuthState());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isSignedIn) {
