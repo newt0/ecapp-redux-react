@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { TextInput } from "../UIkit";
 import IconButton from "@material-ui/core/IconButton";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
@@ -78,6 +78,13 @@ const SetSizeArea = (props) => {
     const newSizes = props.sizes.filter((item, i) => i !== deleteIndex); // deleteIndex以外の配列の要素を返す
     props.setSizes(newSizes);
   };
+
+  const memoIndex = useMemo(() => {
+    // props.sizes.lengthが変わった時にindexを更新する
+    // indexの初期値は0だが、編集の場合はindexが既にある。そのindexから始めるため
+    setIndex(props.sizes.length);
+  }, [props.sizes.length]);
+
   return (
     <div>
       <TableContainer component={Paper}>
