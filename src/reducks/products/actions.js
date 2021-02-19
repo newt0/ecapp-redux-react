@@ -6,3 +6,11 @@ export const fetchProductsAction = (products) => {
     payload: products,
   }; // 引数で渡ってきたproductsをそのまま渡す
 };
+
+export const DELETE_PRODUCTS = "DELETE_PRODUCTS";
+export const deleteProductAction = (products) => {
+  return {
+    type: "DELETE_PRODUCTS",
+    payload: products,
+  };
+};

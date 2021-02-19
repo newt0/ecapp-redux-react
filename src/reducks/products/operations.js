@@ -1,6 +1,6 @@
 import { db, FirebaseTimestamp } from "../../firebase";
 import { push } from "connected-react-router";
-import { fetchProductsAction } from "./actions";
+import { fetchProductsAction, deleteProductAction } from "./actions";
 
 const productsRef = db.collection("products");
 
@@ -66,7 +66,17 @@ export const fetchProducts = () => {
 };
 
 export const deleteProduct = (id) => {
-  return async (dispatch) => {
-    productsRef.doc(id).delete();
+  return async (dispatch, getState) => {
+    // getStateでopration内で現在のStoreの情報を取得できる
+    productsRef
+      .doc(id)
+      .delete()
+      .then(() => {
+        const prevProducts = getState().products.list; // 現在のproductsのlistを取得
+        const nextProducts = prevProducts.filter(
+          (product) => product.id !== id // 今回渡ってきたid以外の配列を新しく作る
+        );
+        dispatch(deleteProductAction(nextProducts));
+      });
   };
 };
