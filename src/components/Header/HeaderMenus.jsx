@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
 import { db } from "../../firebase/index";
 
-const HeaderMenus = () => {
+const HeaderMenus = (props) => {
   return (
     <>
       <IconButton>
@@ -19,7 +19,7 @@ const HeaderMenus = () => {
       <IconButton>
         <FavoriteBorderIcon />
       </IconButton>
-      <IconButton>
+      <IconButton onClick={(event) => props.handleDrawerToggle(event)}>
         <MenuIcon />
       </IconButton>
     </>
