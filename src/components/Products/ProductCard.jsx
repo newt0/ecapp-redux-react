@@ -50,9 +50,13 @@ const ProductCard = (props) => {
   // const price = props?.price?.toLocaleString(); // 3桁区切りでカンマを付けてくれる
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.media} image={images[0].path} />
+      <CardMedia
+        className={classes.media}
+        image={images[0].path}
+        onClick={() => dispatch(push("/product/" + props.id))}
+      />
       <CardContent className={classes.content}>
-        <div>
+        <div onClick={() => dispatch(push("/product/" + props.id))}>
           <Typography color="textSecondary" component="p">
             {props.name}
           </Typography>
