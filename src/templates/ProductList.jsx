@@ -18,7 +18,15 @@ const ProductList = () => {
     <section className="c-section-wrapin">
       <div className="p-grid__row">
         {products?.length > 0
-          ? products.map((product) => <ProductCard key={product.id} />)
+          ? products.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                images={product.images}
+                price={product.price}
+              />
+            ))
           : null}
       </div>
     </section>
