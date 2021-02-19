@@ -1,5 +1,6 @@
 import { db, FirebaseTimestamp } from "../../firebase";
 import { push } from "connected-react-router";
+import { fetchProductsAction } from "./actions";
 
 const productsRef = db.collection("products");
 
@@ -58,6 +59,7 @@ export const fetchProducts = () => {
           const product = snapshot.data();
           productList.push(product);
         });
+
         dispatch(fetchProductsAction(productList));
       });
   };
