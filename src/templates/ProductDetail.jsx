@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import { db } from "../firebase";
 import HTMLReactParser from "html-react-parser";
-import { ImageSwiper } from "../components/Products";
+import { ImageSwiper, SizeTable } from "../components/Products";
 
 const useStyles = makeStyles((theme) => ({
   sliderBox: {
@@ -75,6 +75,7 @@ const ProductDetail = () => {
             <h2 className="u-text__headline">{product.name}</h2>
             <p className={classes.price}>{product.price}</p>
             <div className="module-spacer--small" />
+            <SizeTable sizes={product.sizes} />
             <div className="module-spacer--small" />
             <p>{returnCodeToBr(product.description)}</p>
             {/* 元々文字列だったものがHTMLタグに変換されてReactコンポーネント内で表示可能に */}
