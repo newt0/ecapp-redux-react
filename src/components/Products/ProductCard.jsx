@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { push } from "connected-react-router";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -45,6 +45,15 @@ const useStyles = makeStyles((theme) => ({
 const ProductCard = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const images = props.images.length > 0 ? props.images : [NoImage];
   // const price = props?.price?.toLocaleString(); // 3桁区切りでカンマを付けてくれる
@@ -64,6 +73,24 @@ const ProductCard = (props) => {
             ¥{props.price}
           </Typography>
         </div>
+        <IconButton onClick={handleClick}>
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem
+            onClick={() => {
+              dispatch(push("/product/edit") + props.id);
+              handleClose();
+            }}
+          >
+            編集する
+          </MenuItem>
+        </Menu>
       </CardContent>
     </Card>
   );
