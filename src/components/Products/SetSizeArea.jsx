@@ -74,6 +74,10 @@ const SetSizeArea = (props) => {
     // 引数で渡ってきた値を現在のStateにセットするだけ
   };
 
+  const deleteSize = (deleteIndex) => {
+    const newSizes = props.sizes.filter((item, i) => i !== deleteIndex); // deleteIndex以外の配列の要素を返す
+    props.setSizes(newSizes);
+  };
   return (
     <div>
       <TableContainer component={Paper}>
@@ -99,7 +103,10 @@ const SetSizeArea = (props) => {
                       </IconButton>
                     </TableCell>
                     <TableCell>
-                      <IconButton className={classes.iconCell}>
+                      <IconButton
+                        className={classes.iconCell}
+                        onClick={() => deleteSize(i)}
+                      >
                         <DeleteIcon />
                       </IconButton>
                     </TableCell>
