@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import { db } from "../firebase";
+import HTMLReactParser from "html-react-parser";
 
 const useStyles = makeStyles((theme) => ({
   sliderBox: {
@@ -34,6 +35,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const returnCodeToBr = (text) => {
+  if (text === "") {
+    // stringを受け取って空ならそのまま返す
+    return text;
+  } else {
+    // 空じゃなかったら改行コードを<br>タグに変える。それをHTMLReactParserでパースする
+    return HTMLReactParser(text.replace(/\r?\n/g, "<br/>"));
+  }
+};
+
 const ProductDetail = () => {
   const classes = useStyles();
   const [product, setProduct] = useState(null);
@@ -60,6 +71,10 @@ const ProductDetail = () => {
           <div className={classes.detail}>
             <h2 className="u-text__headline">{product.name}</h2>
             <p className={classes.price}>{product.price}</p>
+            <div className="module-spacer--small" />
+            <div className="module-spacer--small" />
+            <p>{returnCodeToBr(product.description)}</p>
+            {/* 元々文字列だったものがHTMLタグに変換されてReactコンポーネント内で表示可能に */}
           </div>
         </div>
       ) : null}
