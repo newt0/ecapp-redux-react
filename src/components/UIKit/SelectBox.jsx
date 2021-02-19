@@ -24,7 +24,7 @@ const SelectBox = (props) => {
         required={props.required}
         onChange={(e) => props.select(e.target.value)}
       >
-        {props.options.map((value) => {
+        {props.options?.map((value) => {
           return (
             <MenuItem key={value.id} value={value.id}>
               {value.name}
