@@ -63,14 +63,14 @@ const ProductEdit = () => {
         .doc(id)
         .get()
         .then((snapshot) => {
-          const data = snapshot.data();
-          console.log(data);
-          setName(data.name);
-          setImages(data.images);
-          setGender(data.Gender);
-          setCategory(data.category);
-          setPrice(data.price);
-          setDescription(data.description);
+          const product = snapshot.data();
+          setName(product.name);
+          setDescription(product.description);
+          setImages(product.images);
+          setCategory(product.category);
+          setGender(product.gender);
+          setPrice(product.price);
+          setSizes(product.sizes);
         });
     }
   }, [id]);
@@ -124,7 +124,8 @@ const ProductEdit = () => {
           rows={1}
           type={"text"}
         />
-        <div className="module-spacer--medium" />
+        <div className="module-spacer--small" />
+
         <div className="center">
           <PrimaryButton
             label={"商品情報を保存"}
