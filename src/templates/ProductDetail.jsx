@@ -67,7 +67,7 @@ const ProductDetail = () => {
   return (
     <section className="c-section-wrapin">
       {product ? (
-        <div className="-grid__row">
+        <div className="p-grid__row">
           <div className={classes.sliderBox}>
             <ImageSwiper images={product.images} />
           </div>
