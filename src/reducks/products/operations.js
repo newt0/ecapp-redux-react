@@ -31,8 +31,8 @@ export const saveProduct = (
     if (id === "") {
       const ref = productsRef.doc();
       data.created_at = timestamp;
-      const id = ref.id;
-      data.id = id;
+      id = ref.id; // 新しくidを宣言するのではなく、引数で渡ってきたidを更新する。
+      data.id = id; // ↑でconstをつけるとidの参照先が↑になってしまう。今のままだと参照先が引数のidになる
     }
 
     return productsRef
