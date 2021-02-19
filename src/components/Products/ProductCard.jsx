@@ -90,15 +90,15 @@ const ProductCard = (props) => {
           >
             編集する
           </MenuItem>
+          <MenuItem
+            onClick={() => {
+              dispatch(deleteProduct(props.id));
+              dispatch(push(""));
+            }}
+          >
+            削除する
+          </MenuItem>
         </Menu>
-        <MenuItem
-          onClick={() => {
-            dispatch(deleteProduct(props.id));
-            dispatch(push(""));
-          }}
-        >
-          削除する
-        </MenuItem>
       </CardContent>
     </Card>
   );
