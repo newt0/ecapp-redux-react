@@ -64,3 +64,9 @@ export const fetchProducts = () => {
       });
   };
 };
+
+export const deleteProduct = (id) => {
+  return async (dispatch) => {
+    productsRef.doc(id).delete();
+  };
+};

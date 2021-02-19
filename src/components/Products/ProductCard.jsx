@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { deleteProduct } from "../../reducks/products/operations";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,6 +92,14 @@ const ProductCard = (props) => {
             編集する
           </MenuItem>
         </Menu>
+        <MenuItem
+          onClick={() => {
+            dispatch(deleteProduct(props.id));
+            dispatch(push(""));
+          }}
+        >
+          削除する
+        </MenuItem>
       </CardContent>
     </Card>
   );
