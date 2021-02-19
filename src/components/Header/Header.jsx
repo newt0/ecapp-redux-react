@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
 import logo from "../../assets/img/icons/logo.png";
 import { getIsSignedIn } from "../../reducks/users/selectors";
+import HeaderMenus from "./HeaderMenus";
 
 const useStyles = makeStyles({
   root: {
@@ -29,7 +30,8 @@ const Header = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
-  const isSigneIn = getIsSignedIn(selector);
+  const isSignedIn = getIsSignedIn(selector);
+
   return (
     <div className={classes.root}>
       <AppBar className={classes.menuBar} position="fixed">
@@ -40,6 +42,11 @@ const Header = () => {
             width="128px"
             onClick={() => dispatch(push("/"))}
           />
+          {isSignedIn ? (
+            <div className={classes.iconButtons}>
+              <HeaderMenus />
+            </div>
+          ) : null}
         </Toolbar>
       </AppBar>
     </div>
