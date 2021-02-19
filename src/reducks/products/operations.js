@@ -10,7 +10,8 @@ export const saveProduct = (
   category,
   gender,
   price,
-  images
+  images,
+  sizes
 ) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimestamp.now();
@@ -23,6 +24,7 @@ export const saveProduct = (
       price: parseInt(price, 10), // 文字列で受け取った数値を10進数に変える
       updated_at: timestamp,
       images: images,
+      sizes: sizes,
     };
 
     if (id === "") {
