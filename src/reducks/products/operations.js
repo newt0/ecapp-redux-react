@@ -10,34 +10,37 @@ export const saveProduct = (
   category,
   gender,
   price,
-  images,
-  sizes
+  sizes,
+  images
 ) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimestamp.now();
     // 引数に受け取ったname, description, category, gender, priceをdataのname, description, category, gender, price（キー）の値として格納
+
     const data = {
       category: category,
       description: description,
       gender: gender,
+      images: images,
       name: name,
       price: parseInt(price, 10), // 文字列で受け取った数値を10進数に変える
-      updated_at: timestamp,
-      images: images,
       sizes: sizes,
+      updated_at: timestamp,
     };
 
     if (id === "") {
       const ref = productsRef.doc();
+      data.created_at = timestamp;
       const id = ref.id;
       data.id = id;
-      data.created_at = timestamp;
     }
 
     return productsRef
       .doc(id)
-      .set(data, { merge: true }) // 新規作成だから{merge: true}が不要
-      .then(dispatch(push("/")))
+      .set(data, { merge: true })
+      .then(() => {
+        dispatch(push("/"));
+      })
       .catch((error) => {
         throw new Error(error);
       });
