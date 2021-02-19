@@ -98,6 +98,12 @@ const ProductCard = (props) => {
           >
             削除する
           </MenuItem>
+          <MenuItem>
+            <img
+              src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8d29tYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+              alt=""
+            />
+          </MenuItem>
         </Menu>
       </CardContent>
     </Card>
