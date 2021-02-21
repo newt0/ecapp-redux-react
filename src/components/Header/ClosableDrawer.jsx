@@ -89,7 +89,10 @@ const ClosableDrawer = (props) => {
         classes={{ paper: classes.drawerPaper }}
         ModalProps={{ keepMounted: true }} // スマホ表示時のパフォーマンスが上がる
       >
-        <div>
+        <div
+          onClose={(e) => props.onClose(e)}
+          onKeyDown={(e) => props.onKeyDown(e)}
+        >
           <div className={classes.searchField}>
             <TextInput
               fullWidth={false}
