@@ -7,12 +7,16 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
 import { db } from "../../firebase/index";
+import { getProductsInCart } from "../../reducks/users/selectors";
 
 const HeaderMenus = (props) => {
+  const selector = useSelector((state) => state);
+  let productsInCart = getProductsInCart(selector);
+
   return (
     <>
       <IconButton>
-        <Badge badgeContent={3} color="secondary">
+        <Badge badgeContent={productsInCart?.length} color="secondary">
           <ShoppingCartIcon />
         </Badge>
       </IconButton>
