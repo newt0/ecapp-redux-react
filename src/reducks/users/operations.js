@@ -138,6 +138,16 @@ export const resetPassword = (email) => {
   };
 };
 
+export const addProductsToCart = (addedProduct) => {
+  return async (dispatch, getState) => {
+    const uid = getState().users.uid;
+    const cartRef = db.collection("users").doc(uid).collection("cart").doc();
+    addedProduct["cartId"] = cartRef.id; //追加するデータの中に自分自身のidを持たせる
+    await cartRef.set(addedProduct);
+    dispatch(push("/"));
+  };
+};
+
 // callback関数をreturnする。asyncをつける。
 // 引数にdispatchとgetStateを受け取る
 // getStateで現在のReduxのstateを受け取って、stateという定数に格納。getStateはメソッドで呼び出す点に注意

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
-import { db } from "../firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { db, FirebaseTimestamp } from "../firebase";
 import HTMLReactParser from "html-react-parser";
 import { ImageSwiper, SizeTable } from "../components/Products";
+import { addProductsToCart } from "../reducks/users/operations";
 
 const useStyles = makeStyles((theme) => ({
   sliderBox: {
@@ -48,10 +49,34 @@ const returnCodeToBr = (text) => {
 
 const ProductDetail = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
   const selector = useSelector((state) => state);
   const path = selector.router.location.pathname; // ReduxのStoreで管理しているルーティング(router)の情報の中にlocation.pathnameがある
   const id = path.split("/product/")[1];
+
+  // addProduct関数は実際には<SizeTable />に渡している。子コンポーネント内に渡す時はuseCallbackでコールバック関数をメモ化する
+  const addProduct = useCallback(
+    (selectedSize) => {
+      const timestamp = FirebaseTimestamp.now();
+      dispatch(
+        addProductsToCart({
+          added_at: timestamp,
+          description: product.description,
+          gender: product.gender,
+          images: product.images,
+          name: product.name,
+          price: product.price,
+          productId: product.id,
+          quantity: 1,
+          size: selectedSize,
+        })
+      );
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [product]
+  );
+  // productが更新されたらaddProductも再生成する
 
   useEffect(() => {
     db.collection("products")
@@ -75,7 +100,7 @@ const ProductDetail = () => {
             <h2 className="u-text__headline">{product.name}</h2>
             <p className={classes.price}>{product.price}</p>
             <div className="module-spacer--small" />
-            <SizeTable sizes={product.sizes} />
+            <SizeTable addProduct={addProduct} sizes={product.sizes} />
             <div className="module-spacer--small" />
             <p>{returnCodeToBr(product.description)}</p>
             {/* 元々文字列だったものがHTMLタグに変換されてReactコンポーネント内で表示可能に */}
