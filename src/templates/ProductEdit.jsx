@@ -18,7 +18,7 @@ const ProductEdit = () => {
 
   const [name, setName] = useState(""),
     [description, setDescription] = useState(""),
-    [category, setCategory] = useState(""),
+    [categories, setCategories] = useState([]),
     [gender, setGender] = useState(""),
     [price, setPrice] = useState(""),
     [images, setImages] = useState([]),
@@ -45,12 +45,6 @@ const ProductEdit = () => {
     [setPrice]
   );
 
-  const categories = [
-    { id: "tops", name: "トップス" },
-    { id: "shirts", name: "シャツ" },
-    { id: "pants", name: "パンツ" },
-  ];
-
   const genders = [
     { id: "all", name: "全て" },
     { id: "male", name: "メンズ" },
@@ -68,7 +62,7 @@ const ProductEdit = () => {
           setName(product.name);
           setDescription(product.description);
           setImages(product.images);
-          setCategory(product.category);
+          setCategories(product.categories);
           setGender(product.gender);
           setPrice(product.price);
           setSizes(product.sizes);
@@ -105,8 +99,8 @@ const ProductEdit = () => {
           label={"カテゴリー"}
           options={categories}
           required={true}
-          select={setCategory}
-          value={category}
+          select={setCategories}
+          value={categories}
         />
         <SelectBox
           label={"性別"}
@@ -141,7 +135,7 @@ const ProductEdit = () => {
                   id,
                   name,
                   description,
-                  category,
+                  categories,
                   gender,
                   price,
                   sizes,
