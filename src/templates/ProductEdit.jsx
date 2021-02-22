@@ -18,6 +18,7 @@ const ProductEdit = () => {
 
   const [name, setName] = useState(""),
     [description, setDescription] = useState(""),
+    [category, setCategory] = useState(""),
     [categories, setCategories] = useState([]),
     [gender, setGender] = useState(""),
     [price, setPrice] = useState(""),
@@ -117,8 +118,8 @@ const ProductEdit = () => {
           label={"カテゴリー"}
           options={categories}
           required={true}
-          select={setCategories}
-          value={categories}
+          select={setCategory}
+          value={category}
         />
         <SelectBox
           label={"性別"}
