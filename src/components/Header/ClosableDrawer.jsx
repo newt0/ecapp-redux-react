@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { push } from "connected-react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { useDispatch } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
