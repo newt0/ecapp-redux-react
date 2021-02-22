@@ -70,6 +70,19 @@ const ProductEdit = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+    db.collection("categories")
+      .orderBy("order", "asc")
+      .get()
+      .then((snapshots) => {
+        const list = [];
+        snapshots.forEach((snapshot) => {
+          list.push(snapshot.data());
+        });
+        setCategories(list);
+      });
+  }, []);
+
   return (
     <div>
       <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
