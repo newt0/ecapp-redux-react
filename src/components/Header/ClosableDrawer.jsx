@@ -11,10 +11,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import HistoryIcon from "@material-ui/icons/History";
+// import HistoryIcon from "@material-ui/icons/History";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { TextInput } from "../UIkit";
+import { TextInput } from "../UIkit/index";
 import { signOut } from "../../reducks/users/operations";
 import { db } from "../../firebase/index";
 
