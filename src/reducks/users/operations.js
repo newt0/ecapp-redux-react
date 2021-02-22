@@ -31,7 +31,7 @@ export const signUp = (username, email, password, confirmPassword) => {
           const userInitialData = {
             created_at: timestamp,
             email: email,
-            role: "customer",
+            role: "client",
             uid: uid,
             updated_at: timestamp, // 新規作成なのでcreated_atと同じ
             username: username,
