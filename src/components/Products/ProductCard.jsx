@@ -84,7 +84,7 @@ const ProductCard = (props) => {
         >
           <MenuItem
             onClick={() => {
-              dispatch(push("/product/edit") + props.id);
+              dispatch(push(`/product/edit/${props.id}`));
               handleClose();
             }}
           >
