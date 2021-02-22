@@ -14,7 +14,7 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 // import HistoryIcon from "@material-ui/icons/History";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { TextInput } from "../UIkit/index";
+import { TextInput } from "../UIkit/TextInput";
 import { signOut } from "../../reducks/users/operations";
 import { db } from "../../firebase/index";
 
