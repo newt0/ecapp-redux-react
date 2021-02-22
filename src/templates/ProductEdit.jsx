@@ -78,6 +78,7 @@ const ProductEdit = () => {
         const list = [];
         snapshots.forEach((snapshot) => {
           const data = snapshot.data();
+          console.log("data->", data);
           list.push({
             id: data.id,
             name: data.name,
