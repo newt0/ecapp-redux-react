@@ -55,11 +55,11 @@ const ClosableDrawer = (props) => {
   };
 
   const [filters, setFilters] = useState([
-    { func: selectMenu, label: "全て", id: "all", value: "/" },
-    { func: selectMenu, label: "メンズ", id: "male", value: "/?gender=male" },
+    { func: selectMenu, label: "ALL GENDER", id: "all", value: "/" },
+    { func: selectMenu, label: "MALE", id: "male", value: "/?gender=male" },
     {
       func: selectMenu,
-      label: "レディース",
+      label: "FEMALE",
       id: "female",
       value: "/?gender=female",
     },
@@ -68,14 +68,14 @@ const ClosableDrawer = (props) => {
   const menus = [
     {
       func: selectMenu,
-      label: "商品登録",
+      label: "テストデータ作成",
       icon: <AddCircleIcon />,
       id: "register",
       value: "/product/edit", // セレクトメニューに渡すパス
     },
     {
       func: selectMenu,
-      label: "注文履歴",
+      label: "履歴",
       icon: <HistoryIcon />,
       id: "history",
       value: "order/history",
