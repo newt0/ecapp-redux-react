@@ -86,12 +86,12 @@ const ProductEdit = () => {
 
   return (
     <section>
-      <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
+      <h2 className="u-text__headline u-text-center">キャストの登録・編集</h2>
       <div className="c-section-container">
         <ImageArea images={images} setImages={setImages} />
         <TextInput
           fullWidth={true}
-          label={"商品名"}
+          label={"NAME"}
           multiline={false}
           required={true}
           onChange={inputName}
@@ -101,7 +101,7 @@ const ProductEdit = () => {
         />
         <TextInput
           fullWidth={true}
-          label={"商品説明"}
+          label={"DESCRIPTION"}
           multiline={true}
           required={true}
           onChange={inputDescription}
@@ -110,14 +110,14 @@ const ProductEdit = () => {
           type={"text"}
         />
         <SelectBox
-          label={"カテゴリー"}
+          label={"CATEGORY"}
           options={categories}
           required={true}
           select={setCategory}
           value={category}
         />
         <SelectBox
-          label={"性別"}
+          label={"GENDER"}
           options={genders}
           required={true}
           select={setGender}
@@ -125,7 +125,7 @@ const ProductEdit = () => {
         />
         <TextInput
           fullWidth={true}
-          label={"価格"}
+          label={"PRICE"}
           multiline={false}
           required={true}
           onChange={inputPrice}
@@ -138,7 +138,7 @@ const ProductEdit = () => {
         <div className="module-spacer--small" />
         <div className="center">
           <PrimaryButton
-            label={"商品情報を保存"}
+            label={"キャスト情報を保存"}
             onClick={() =>
               dispatch(
                 saveProduct(
