@@ -48,20 +48,20 @@ export const saveProduct = (
   };
 };
 
-export const fetchProducts = () => {
+export const fetchProducts = (gender, category) => {
   return async (dispatch) => {
-    productsRef
-      .orderBy("updated_at", "desc")
-      .get()
-      .then((snapshots) => {
-        const productList = [];
-        snapshots.forEach((snapshot) => {
-          const product = snapshot.data();
-          productList.push(product);
-        });
+    let query = productsRef.orderBy("updated_at", "desc");
+    query = gender !== "" ? query.where("gender", "==", gender) : query;
+    query = category !== "" ? query.where("category", "==", category) : query;
 
-        dispatch(fetchProductsAction(productList));
+    query.get().then((snapshots) => {
+      const productList = [];
+      snapshots.forEach((snapshot) => {
+        const product = snapshot.data();
+        productList.push(product);
       });
+      dispatch(fetchProductsAction(productList));
+    });
   };
 };
 

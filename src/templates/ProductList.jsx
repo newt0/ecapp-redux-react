@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
+import { ProductCard } from "../components/Products";
 import { useDispatch, useSelector } from "react-redux";
-import ProductCard from "../components/Products/ProductCard";
-import { fetchProducts } from "../reducks/products/operations";
 import { getProducts } from "../reducks/products/selectors";
+import { fetchProducts } from "../reducks/products/operations";
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state); // selectorに現在のReduxのStoreのState全体が入っている
   const products = getProducts(selector);
-  const query = selector.location.router.search; // urlのクエリパラメータが入る]
+
+  const query = window.location.search; // urlのクエリパラメータが入る]
   const gender = /^\?gender=/.test(query) ? query.split("?gender=")[1] : "";
   const category = /^\?category=/.test(query)
     ? query.split("?category=")[1]
@@ -16,8 +17,7 @@ const ProductList = () => {
 
   useEffect(() => {
     dispatch(fetchProducts(gender, category));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [query]);
 
   return (
     <section className="c-section-wrapin">
