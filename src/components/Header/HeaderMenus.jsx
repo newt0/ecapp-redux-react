@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import { Badge } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import MenuIcon from "@material-ui/icons/Menu";
-import { useDispatch, useSelector } from "react-redux";
-import { push } from "connected-react-router";
-import { db } from "../../firebase/index";
+import { useSelector } from "react-redux";
 import { getProductsInCart } from "../../reducks/users/selectors";
 
 const HeaderMenus = (props) => {
