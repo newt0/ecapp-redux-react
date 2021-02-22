@@ -8,9 +8,14 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state); // selectorに現在のReduxのStoreのState全体が入っている
   const products = getProducts(selector);
+  const query = selector.location.router.search; // urlのクエリパラメータが入る]
+  const gender = /^\?gender=/.test(query) ? query.split("?gender=")[1] : "";
+  const category = /^\?category=/.test(query)
+    ? query.split("?category=")[1]
+    : "";
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts(gender, category));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
