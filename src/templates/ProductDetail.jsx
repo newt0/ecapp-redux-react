@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useCallback } from "react";
+// import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { db, FirebaseTimestamp } from "../firebase";
+// import { db, FirebaseTimestamp } from "../firebase";
+import { db } from "../firebase";
 import HTMLReactParser from "html-react-parser";
-import { ImageSwiper, SizeTable } from "../components/Products";
-import { addProductsToCart } from "../reducks/users/operations";
+// import { ImageSwiper, SizeTable } from "../components/Products";
+import { ImageSwiper } from "../components/Products";
+// import { addProductsToCart } from "../reducks/users/operations";
 
 const useStyles = makeStyles((theme) => ({
   sliderBox: {
@@ -56,26 +59,26 @@ const ProductDetail = () => {
   const id = path.split("/product/")[1];
 
   // addProduct関数は実際には<SizeTable />に渡している。子コンポーネント内に渡す時はuseCallbackでコールバック関数をメモ化する
-  const addProduct = useCallback(
-    (selectedSize) => {
-      const timestamp = FirebaseTimestamp.now();
-      dispatch(
-        addProductsToCart({
-          added_at: timestamp,
-          description: product.description,
-          gender: product.gender,
-          images: product.images,
-          name: product.name,
-          price: product.price,
-          productId: product.id,
-          quantity: 1,
-          size: selectedSize,
-        })
-      );
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [product]
-  );
+  // const addProduct = useCallback(
+  //   (selectedSize) => {
+  //     const timestamp = FirebaseTimestamp.now();
+  //     dispatch(
+  //       addProductsToCart({
+  //         added_at: timestamp,
+  //         description: product.description,
+  //         gender: product.gender,
+  //         images: product.images,
+  //         name: product.name,
+  //         price: product.price,
+  //         productId: product.id,
+  //         quantity: 1,
+  //         size: selectedSize,
+  //       })
+  //     );
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [product]
+  // );
   // productが更新されたらaddProductも再生成する
 
   useEffect(() => {

@@ -73,13 +73,13 @@ const ClosableDrawer = (props) => {
       id: "register",
       value: "/product/edit", // セレクトメニューに渡すパス
     },
-    {
-      func: selectMenu,
-      label: "履歴",
-      icon: <HistoryIcon />,
-      id: "history",
-      value: "order/history",
-    },
+    // {
+    //   func: selectMenu,
+    //   label: "履歴",
+    //   icon: <HistoryIcon />,
+    //   id: "history",
+    //   value: "order/history",
+    // },
 
     {
       func: selectMenu,
