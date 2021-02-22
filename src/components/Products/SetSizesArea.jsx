@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SetSizeArea = (props) => {
+const SetSizesArea = (props) => {
   const classes = useStyles();
   const [index, setIndex] = useState(0),
     [size, setSize] = useState(""),
@@ -159,4 +159,4 @@ const SetSizeArea = (props) => {
   );
 };
 
-export default SetSizeArea;
+export default SetSizesArea;

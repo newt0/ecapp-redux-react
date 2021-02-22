@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { ImageArea, SetSizeArea } from "../components/Products";
+import { ImageArea, SetSizesArea } from "../components/Products";
 import { TextInput, SelectBox, PrimaryButton } from "../components/UIkit";
 import { db } from "../firebase";
 import { saveProduct } from "../reducks/products/operations";
@@ -18,11 +18,11 @@ const ProductEdit = () => {
 
   const [name, setName] = useState(""),
     [description, setDescription] = useState(""),
+    [images, setImages] = useState([]),
     [category, setCategory] = useState(""),
     [categories, setCategories] = useState([]),
     [gender, setGender] = useState(""),
     [price, setPrice] = useState(""),
-    [images, setImages] = useState([]),
     [sizes, setSizes] = useState([]);
 
   const inputName = useCallback(
@@ -47,10 +47,10 @@ const ProductEdit = () => {
   );
 
   const genders = [
-    { id: "all", name: "全て" },
-    { id: "male", name: "メンズ" },
-    { id: "female", name: "レディース" },
-    { id: "others", name: "その他" },
+    { id: "all", name: "ALL GENDERS" },
+    { id: "male", name: "MALE" },
+    { id: "female", name: "FEMALE" },
+    { id: "others", name: "OTHERS" },
   ];
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const ProductEdit = () => {
           setName(product.name);
           setDescription(product.description);
           setImages(product.images);
-          setCategories(product.categories);
+          setCategory(product.category);
           setGender(product.gender);
           setPrice(product.price);
           setSizes(product.sizes);
@@ -78,19 +78,14 @@ const ProductEdit = () => {
       .then((snapshots) => {
         const list = [];
         snapshots.forEach((snapshot) => {
-          const data = snapshot.data();
-          console.log("data->", data);
-          list.push({
-            id: data.id,
-            name: data.name,
-          });
+          list.push(snapshot.data());
         });
         setCategories(list);
       });
   }, []);
 
   return (
-    <div>
+    <section>
       <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
       <div className="c-section-container">
         <ImageArea images={images} setImages={setImages} />
@@ -100,18 +95,18 @@ const ProductEdit = () => {
           multiline={false}
           required={true}
           onChange={inputName}
-          value={name}
           rows={1}
+          value={name}
           type={"text"}
         />
         <TextInput
           fullWidth={true}
           label={"商品説明"}
-          multiline={false}
+          multiline={true}
           required={true}
           onChange={inputDescription}
+          rows={5}
           value={description}
-          rows={1}
           type={"text"}
         />
         <SelectBox
@@ -134,17 +129,13 @@ const ProductEdit = () => {
           multiline={false}
           required={true}
           onChange={inputPrice}
-          value={price}
           rows={1}
-          type={"text"}
+          value={price}
+          type={"number"}
         />
-
         <div className="module-spacer--small" />
-
-        <SetSizeArea sizes={sizes} setSizes={setSizes} />
-
+        <SetSizesArea sizes={sizes} setSizes={setSizes} />
         <div className="module-spacer--small" />
-
         <div className="center">
           <PrimaryButton
             label={"商品情報を保存"}
@@ -154,7 +145,7 @@ const ProductEdit = () => {
                   id,
                   name,
                   description,
-                  categories,
+                  category,
                   gender,
                   price,
                   sizes,
@@ -165,7 +156,7 @@ const ProductEdit = () => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

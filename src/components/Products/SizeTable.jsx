@@ -20,38 +20,36 @@ const useStyles = makeStyles({
 const SizeTable = (props) => {
   const classes = useStyles();
 
-  const sizes = props.sizes;
-
   return (
     <TableContainer>
-      <Table>
+      <Table aria-label="simple table">
         <TableBody>
-          {sizes.length > 0
-            ? sizes.map((size) => (
-                <TableRow key={size.size}>
-                  <TableCell component="th" scope="row">
-                    {size.size}
-                  </TableCell>
-                  <TableCell className={classes.iconCell}>
-                    残り{size.quantity}点
-                  </TableCell>
-                  <TableCell className={classes.iconCell}>
-                    {size.quantity > 0 ? (
-                      <IconButton onClick={() => props.addProduct(size.size)}>
-                        <ShoppingCartIcon />
-                      </IconButton>
-                    ) : (
-                      <div>Sold Out</div>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <FavoriteBorderIcon />
+          {props.sizes.length > 0 &&
+            props.sizes.map((item, index) => (
+              <TableRow key={item.size}>
+                <TableCell component="th" scope="row">
+                  {item.size}
+                </TableCell>
+                <TableCell>残り{item.quantity}点</TableCell>
+                <TableCell className={classes.iconCell}>
+                  {item.quantity > 0 ? (
+                    <IconButton
+                      className={classes.iconCell}
+                      onClick={() => props.addProduct(item.size)}
+                    >
+                      <ShoppingCartIcon />
                     </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))
-            : null}
+                  ) : (
+                    <div>SOLD OUT</div>
+                  )}
+                </TableCell>
+                <TableCell className={classes.iconCell}>
+                  <IconButton className={classes.iconCell}>
+                    <FavoriteBorderIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
