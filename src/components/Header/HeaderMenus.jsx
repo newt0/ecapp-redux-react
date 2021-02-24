@@ -7,18 +7,19 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsInCart, getUserId } from "../../reducks/users/selectors";
 import { db } from "../../firebase/index";
-import { fetchProductInCart } from "../../reducks/users/operations";
+import { fetchProductsInCart } from "../../reducks/users/operations";
 
 const HeaderMenus = (props) => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
-  const uid = getUserId(selector);
+  const userId = getUserId(selector);
   let productsInCart = getProductsInCart(selector);
+  console.log("productsInCart->", productsInCart);
 
   useEffect(() => {
     const unsubscribe = db
       .collection("users")
-      .doc(uid)
+      .doc(userId)
       .collection("cart")
       .onSnapshot((snapshots) => {
         snapshots.docChanges().forEach((change) => {
@@ -26,7 +27,7 @@ const HeaderMenus = (props) => {
           const changeType = change.type;
 
           switch (changeType) {
-            case "add":
+            case "added":
               productsInCart.push(product);
               break;
             case "modified":
@@ -40,16 +41,15 @@ const HeaderMenus = (props) => {
                 (product) => product.cartId !== change.doc.id
               );
               break;
-
             default:
               break;
           }
         });
-        dispatch(fetchProductInCart(productsInCart));
+
+        dispatch(fetchProductsInCart(productsInCart));
       });
-    return () => {
-      unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
 
   return (
