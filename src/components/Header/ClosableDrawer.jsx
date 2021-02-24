@@ -16,7 +16,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { signOut } from "../../reducks/users/operations";
 import { db } from "../../firebase/index";
 import { TextInput } from "../UIkit";
-// import HistoryIcon from "@material-ui/icons/History";
+import HistoryIcon from "@material-ui/icons/History";
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -73,14 +73,13 @@ const ClosableDrawer = (props) => {
       id: "register",
       value: "/product/edit", // セレクトメニューに渡すパス
     },
-    // {
-    //   func: selectMenu,
-    //   label: "履歴",
-    //   icon: <HistoryIcon />,
-    //   id: "history",
-    //   value: "order/history",
-    // },
-
+    {
+      func: selectMenu,
+      label: "履歴",
+      icon: <HistoryIcon />,
+      id: "history",
+      value: "order/history",
+    },
     {
       func: selectMenu,
       label: "プロフィール",

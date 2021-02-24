@@ -1,8 +1,7 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import { Badge } from "@material-ui/core";
-// import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useSelector } from "react-redux";
@@ -16,7 +15,7 @@ const HeaderMenus = (props) => {
     <>
       <IconButton>
         <Badge badgeContent={productsInCart?.length} color="secondary">
-          <PersonPinIcon />
+          <ShoppingCartIcon />
         </Badge>
       </IconButton>
       <IconButton>
