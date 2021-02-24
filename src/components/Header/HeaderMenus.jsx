@@ -23,7 +23,7 @@ const HeaderMenus = (props) => {
       .onSnapshot((snapshots) => {
         snapshots.docChanges().forEach((change) => {
           const product = change.doc.data();
-          const changeType = change.type();
+          const changeType = change.type;
 
           switch (changeType) {
             case "add":
@@ -34,6 +34,7 @@ const HeaderMenus = (props) => {
                 (product) => product.cartId === change.doc.id
               );
               productsInCart[index] = product;
+              break;
             case "removed":
               productsInCart = productsInCart.filter(
                 (product) => product.cartId !== change.doc.id
