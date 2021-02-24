@@ -24,6 +24,14 @@ export const signOutAction = (userState) => {
   };
 };
 
+export const FETCH_PRODUCTS_IN_CART = "FETCH_PRODUCTS_IN_CART";
+export const fetchProductInCartAction = (products) => {
+  return {
+    type: "FETCH_PRODUCTS_IN_CART",
+    payload: products,
+  };
+};
+
 // ## Actionsの役割
 // =アプリからStoreへデータを送るためのpayloadを渡す役割
 // ->アプリから受け取ったデータをReducersへ渡す

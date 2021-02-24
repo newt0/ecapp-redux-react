@@ -22,7 +22,7 @@ useEffect のクリーンアップで unsubscribe しないとリスナーが重
 ```JS
 snapshots.docChanges().forEach((change) => {
   const product = change.doc.data()
-  const changeType = change.type()
+  const changeType = change.type
 
   switch (changeType) { // changeTypeに応じて配列操作
     case "add":

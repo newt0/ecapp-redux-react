@@ -1,4 +1,8 @@
-import { signInAction, signOutAction } from "./actions";
+import {
+  signInAction,
+  signOutAction,
+  fetchProductInCartAction,
+} from "./actions";
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
@@ -145,6 +149,12 @@ export const addProductsToCart = (addedProduct) => {
     addedProduct["cartId"] = cartRef.id; //追加するデータの中に自分自身のidを持たせる
     await cartRef.set(addedProduct);
     dispatch(push("/"));
+  };
+};
+
+export const fetchProductInCart = (products) => {
+  return async (dispatch) => {
+    dispatch(fetchProductInCartAction(products));
   };
 };
 
