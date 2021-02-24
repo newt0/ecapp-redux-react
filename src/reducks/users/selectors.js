@@ -16,7 +16,7 @@ export const getUsername = createSelector(
 
 export const getProductsInCart = createSelector(
   [usersSelector],
-  (state) => state.carts
+  (state) => state.cart
 );
 
 // ## 各ファイルの役割|seletor
