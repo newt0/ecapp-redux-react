@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
-import logo from "../../assets/img/icons/logo.png";
+import logo from "../../assets/img/icons/logo2.png";
 import { getIsSignedIn } from "../../reducks/users/selectors";
 import { HeaderMenus, ClosableDrawer } from "./index";
 
