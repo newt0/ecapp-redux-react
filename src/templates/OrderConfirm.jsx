@@ -53,7 +53,8 @@ const OrderConfirm = () => {
 
   const order = useCallback(() => {
     dispatch(orderProduct(productsInCart, total));
-  }, [productsInCart, total, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productsInCart]);
 
   return (
     <section className="c-section-wrapin">

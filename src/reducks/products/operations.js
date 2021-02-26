@@ -86,14 +86,13 @@ export const orderProduct = (productsInCart, amount) => {
     const uid = getState().users.uid;
     const userRef = db.collection("users").doc(uid);
     const timestamp = FirebaseTimestamp.now();
-    let products = {};
+    let products = [];
     let soldOutProducts = [];
-
-    const batch = db.batch();
 
     for (const product of productsInCart) {
       const snapshot = await productsRef.doc(product.productId).get();
       const sizes = snapshot.data().sizes;
+      const batch = db.batch();
 
       const updateSizes = sizes.map((size) => {
         if (size.size === product.size) {
@@ -110,13 +109,13 @@ export const orderProduct = (productsInCart, amount) => {
         }
       });
 
-      products[product.productId] = {
+      products.push({
         id: product.productId,
         images: product.images,
         name: product.name,
         price: product.price,
         size: product.size,
-      };
+      });
 
       batch.update(productsRef.doc(product.productId), { sizes: updateSizes });
       batch.delete(userRef.collection("cart").doc(product.cartId));
@@ -137,6 +136,7 @@ export const orderProduct = (productsInCart, amount) => {
             const shippingDate = FirebaseTimestamp.fromDate(
               new Date(date.setDate(date.getDate() + 3))
             );
+
             const history = {
               amount: amount,
               created_at: timestamp,
