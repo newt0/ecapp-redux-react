@@ -1,22 +1,24 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import IconButton from "@material-ui/core/IconButton";
+import { TextInput } from "../UIkit";
+import {
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import HistoryIcon from "@material-ui/icons/History";
+import { makeStyles } from "@material-ui/core/styles";
 import { signOut } from "../../reducks/users/operations";
 import { db } from "../../firebase/index";
-import { TextInput } from "../UIkit";
-import HistoryIcon from "@material-ui/icons/History";
 
 const useStyles = makeStyles((theme) => ({
   drawer: {

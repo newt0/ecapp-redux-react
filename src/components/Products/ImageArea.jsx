@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import { makeStyles } from "@material-ui/styles";
 import { IconButton } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import { makeStyles } from "@material-ui/styles";
 import { storage } from "../../firebase";
 import { ImagePreview } from "../Products";
 

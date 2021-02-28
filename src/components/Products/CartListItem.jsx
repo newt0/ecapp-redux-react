@@ -1,11 +1,13 @@
 import React from "react";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import { makeStyles } from "@material-ui/styles";
+import {
+  Divider,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  IconButton,
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
+import { makeStyles } from "@material-ui/styles";
 import { useSelector } from "react-redux";
 import { getUserId } from "../../reducks/users/selectors";
 import { db } from "../../firebase/index";

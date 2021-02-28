@@ -1,10 +1,12 @@
 import React from "react";
-import Table from "@material-ui/core/Table";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import IconButton from "@material-ui/core/IconButton";
-import TableContainer from "@material-ui/core/TableContainer";
+import {
+  Table,
+  TableContainer,
+  TableRow,
+  TableCell,
+  TableBody,
+  IconButton,
+} from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { makeStyles } from "@material-ui/core/styles";

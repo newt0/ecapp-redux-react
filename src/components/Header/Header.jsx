@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
 import logo from "../../assets/img/icons/logo2.png";
-import { getIsSignedIn } from "../../reducks/users/selectors";
+import { AppBar, Toolbar } from "@material-ui/core";
 import { HeaderMenus, ClosableDrawer } from "./index";
+import { getIsSignedIn } from "../../reducks/users/selectors";
 
 const useStyles = makeStyles({
   root: {
