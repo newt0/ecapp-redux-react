@@ -1,71 +1,79 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # ecapp-redux-react
+
+This is an exercise in developing an app with two types of users with Redux and Firebase.
+
+## Technical composition
+
+The front-end is developed with React, and the back-end with Firebase and Redux.
+Firebase uses `Firestore`, `Cloud Functions`, `Cloud Storage`, and `Hosting`.
+Redux is based on the `re-ducks` pattern.
+
+Styling is mainly based on `Material UI` and `CSS in JS`. Some CSS is defined in CSS files in the `assets` directory.
+Some components use other external libraries such as `react-id-swiper`.
+Some components use other external libraries such as `react-id-swiper`, etc. (It might be better to unify the libraries to `Material UI`)
+
+Because `CSS in JS` is used, CSS designs such as `BEM` are omitted (because class name collisions will not occur).
+
+## DB Design
+
+### firestore
+
+- users
+- - user
+
+- products
+- - product
+
+- categories
+- - category
+
+Authentication in Firebase keeps `users` separately from Firestore.
+For ease of use, the `uid` of `users` in Firestore and the `uid` of Authentication are the same.
+
+### Data held by `product` (`documents` in the `products` collection)
+
+```JS
+id: string,
+name: string,
+description: string,
+categories: [{id: string, name: string, order: number}],
+gender: string, //male | female | others
+images: [{ image: {path: string, src: string} }]
+```
+
+### Data held by `user` (`documents` in the `users` collection)
+
+```JS
+icon: string,
+uid: string,
+username: string,
+role: string,
+mail: string,
+password: string
+cart: [],
+```
+
+## command
+
+### setup
+
+Clone the repository in the folder you want to create.
+`git clone https://github.com/newt0/talentlink.git`
+
+After navigating to the root directory of the project with `cd talentlink`,
+use `yarn` (or `yarn install`) to import the necessary dependencies.
+
+※ Use `yarn` instead of `npm`. This is because both `yarn` and React are developed by Facebook and have a high affinity.
+
+※ It is assumed that the environment has been built with `homebrew`, `nodebrew`, etc.
+※ You will need to set up a firebase project. You will also need to select the Blaze plan.
+
+### Run local server
+
+Run `yarn dev` and then open `http://localhost:3000/` in your browser.
+
+### deploy
+
+Run `yarn build`.
+Then, after building finishied,
+`firebase deploy --only hosting` to deploy to Firebase Hosting.
