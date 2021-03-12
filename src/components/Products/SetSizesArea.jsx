@@ -96,12 +96,10 @@ const SetSizesArea = (props) => {
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>サイズ</TableCell>
-              <TableCell>数量</TableCell>
-              <TableCell className={classes.iconCell} />
-              <TableCell className={classes.iconCell} />
-            </TableRow>
+            <TableCell>サイズ</TableCell>
+            <TableCell>数量</TableCell>
+            <TableCell className={classes.iconCell} />
+            <TableCell className={classes.iconCell} />
           </TableHead>
           <TableBody>
             {props.sizes?.length > 0
