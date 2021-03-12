@@ -15,8 +15,8 @@ export const getUsername = createSelector(
 );
 
 export const getProductsInCart = createSelector(
-  [usersSelector],
-  (state) => state.cart
+  [usersSelector], // =state.users
+  (state) => state.cart // usersのなかのcartの値
 );
 
 // ## 各ファイルの役割|seletor

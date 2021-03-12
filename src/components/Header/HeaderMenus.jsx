@@ -14,8 +14,7 @@ const HeaderMenus = (props) => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
   const userId = getUserId(selector);
-  let productsInCart = getProductsInCart(selector);
-  console.log("productsInCart->", productsInCart);
+  let productsInCart = getProductsInCart(selector); //reduxのStoreのなかにあるcartの値を取得
 
   useEffect(() => {
     const unsubscribe = db
@@ -23,6 +22,7 @@ const HeaderMenus = (props) => {
       .doc(userId)
       .collection("cart")
       .onSnapshot((snapshots) => {
+        //cartサブコレクションにあるデータ全てを受け取る
         snapshots.docChanges().forEach((change) => {
           const product = change.doc.data();
           const changeType = change.type;
@@ -33,26 +33,61 @@ const HeaderMenus = (props) => {
               break;
             case "modified":
               const index = productsInCart.findIndex(
+                //何番目のproductが変更されたか調べる
                 (product) => product.cartId === change.doc.id
               );
-              productsInCart[index] = product;
+              productsInCart[index] = product; //ローカルで変更されたproductを調べたので、それにchange.doc.data()を代入して上書き
               break;
-            case "removed":
-              // eslint-disable-next-line react-hooks/exhaustive-deps
-              productsInCart = productsInCart.filter(
-                (product) => product.cartId !== change.doc.id
-              );
+            case "removed": //今回removedされたproduct(firestore)とマッチするid以外のproductを抽出した配列
+              productsInCart.filter((product) => product.id !== change.doc.id);
               break;
             default:
               break;
           }
         });
-
-        dispatch(fetchProductsInCart(productsInCart));
+        dispatch(fetchProductsInCart(productsInCart)); //ReduxのStoreのusersのcartを更新する
       });
-
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, []);
+
+  // useEffect(() => {
+  //   const unsubscribe = db
+  //     .collection("users")
+  //     .doc(userId)
+  //     .collection("cart")
+  //     .onSnapshot((snapshots) => {
+  //       snapshots.docChanges().forEach((change) => {
+  //         const product = change.doc.data();
+  //         const changeType = change.type;
+
+  //         switch (changeType) {
+  //           case "added":
+  //             productsInCart.push(product);
+  //             break;
+  //           case "modified":
+  //             const index = productsInCart.findIndex(
+  //               (product) => product.cartId === change.doc.id
+  //             );
+  //             productsInCart[index] = product;
+  //             break;
+  //           case "removed":
+  //             // eslint-disable-next-line react-hooks/exhaustive-deps
+  //             productsInCart = productsInCart.filter(
+  //               (product) => product.cartId !== change.doc.id
+  //             );
+  //             break;
+  //           default:
+  //             break;
+  //         }
+  //       });
+
+  //       dispatch(fetchProductsInCart(productsInCart));
+  //     });
+
+  //   return () => unsubscribe();
+  // }, []);
 
   return (
     <>
