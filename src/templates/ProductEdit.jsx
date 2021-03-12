@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { ImageArea, SetSizesArea } from "../components/Products";
+import { ImageArea, SetSizesArea, SetSizesArea2 } from "../components/Products";
 import { TextInput, SelectBox, PrimaryButton } from "../components/UIkit";
 import { db } from "../firebase";
 import { saveProduct } from "../reducks/products/operations";
@@ -88,7 +88,7 @@ const ProductEdit = () => {
     <section>
       <h2 className="u-text__headline u-text-center">キャストの登録・編集</h2>
       <div className="c-section-container">
-        <ImageArea images={images} setImages={setImages} />
+        {/* <ImageArea images={images} setImages={setImages} />
         <TextInput
           fullWidth={true}
           label={"NAME"}
@@ -132,9 +132,11 @@ const ProductEdit = () => {
           rows={1}
           value={price}
           type={"number"}
-        />
-        <div className="module-spacer--small" />
+        /> */}
         <SetSizesArea sizes={sizes} setSizes={setSizes} />
+        <div className="module-spacer--small" />
+        <div className="module-spacer--small" />
+        {/* <SetSizesArea2 sizes={sizes} setSizes={setSizes} /> */}
         <div className="module-spacer--small" />
         <div className="center">
           <PrimaryButton
