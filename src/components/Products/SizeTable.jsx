@@ -37,7 +37,7 @@ const SizeTable = (props) => {
                   {item.quantity > 0 ? (
                     <IconButton
                       className={classes.iconCell}
-                      onClick={() => props.addProduct(item.size)}
+                      onClick={() => props.addProduct(item.size)} // ShoppingCartIconをクリックしたらprops.addProductを呼び出す。props.addProductには選択されたサイズを渡す
                     >
                       <ShoppingCartIcon />
                     </IconButton>
