@@ -145,9 +145,11 @@ export const resetPassword = (email) => {
 export const addProductsToCart = (addedProduct) => {
   return async (dispatch, getState) => {
     const uid = getState().users.uid; // getState()で現在のReduxのStoreの情報を取ってくる。何の情報かというとuser.uid
-    const cartRef = db.collection("users").doc(uid).collection("cart").doc(); // これから追加する商品のcartのid
-    // cartというsubcollectionのなかに新しくデータを追加するための枠を作る
-    // addedProduct["cartId"] = cartRef.id; // 引数で渡ってきたオブジェクト（addedProduct）にcartIdというプロパティを持たせる
+
+    const cartRef = db.collection("users").doc(uid).collection("cart").doc(); // これから追加する商品のcartのid。cartというsubcollectionのなかに新しくデータを追加するための枠を作る
+
+    // addedProduct["cartId"] = cartRef.id;
+    // 引数で渡ってきたオブジェクト（addedProduct）にcartIdというプロパティを持たせる
     // 今回追加するデータの中にcartサブコレクションの中の自分自身のidをfieldとして持たせる
     addedProduct.cartId = cartRef.id;
     await cartRef.set(addedProduct);
