@@ -11,10 +11,15 @@ import { fetchProductsInCart } from "../../reducks/users/operations";
 import { push } from "connected-react-router";
 
 const HeaderMenus2 = (props) => {
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+  const uid = getUserId(selector);
+  let productsInCart = getProductsInCart(selector);
+
   return (
     <>
-      <IconButton>
-        <Badge badgeContent={3} color="secondary">
+      <IconButton onClick={() => dispatch(push("/cart"))}>
+        <Badge badgeContent={productsInCart?.length} color="secondary">
           <ShoppingCartIcon />
         </Badge>
       </IconButton>

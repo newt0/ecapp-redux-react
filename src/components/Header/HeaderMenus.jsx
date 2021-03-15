@@ -53,43 +53,6 @@ const HeaderMenus = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   const unsubscribe = db
-  //     .collection("users")
-  //     .doc(userId)
-  //     .collection("cart")
-  //     .onSnapshot((snapshots) => {
-  //       snapshots.docChanges().forEach((change) => {
-  //         const product = change.doc.data();
-  //         const changeType = change.type;
-
-  //         switch (changeType) {
-  //           case "added":
-  //             productsInCart.push(product);
-  //             break;
-  //           case "modified":
-  //             const index = productsInCart.findIndex(
-  //               (product) => product.cartId === change.doc.id
-  //             );
-  //             productsInCart[index] = product;
-  //             break;
-  //           case "removed":
-  //             // eslint-disable-next-line react-hooks/exhaustive-deps
-  //             productsInCart = productsInCart.filter(
-  //               (product) => product.cartId !== change.doc.id
-  //             );
-  //             break;
-  //           default:
-  //             break;
-  //         }
-  //       });
-
-  //       dispatch(fetchProductsInCart(productsInCart));
-  //     });
-
-  //   return () => unsubscribe();
-  // }, []);
-
   return (
     <>
       <IconButton onClick={() => dispatch(push("/cart"))}>

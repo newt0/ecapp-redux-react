@@ -109,26 +109,26 @@ const ClosableDrawer2 = (props) => {
             <IconButton>
               <SearchIcon />
             </IconButton>
-            <Divider />
-            <List>
-              {menus.map((menu) => (
-                <ListItem
-                  button
-                  key={menu.id}
-                  onClick={(e) => menu.func(e, menu.value)}
-                >
-                  <ListItemIcon>{menu.icon}</ListItemIcon>
-                  <ListItemText primary={menu.label} />
-                </ListItem>
-              ))}
-              <ListItem button key="logout" onClick={() => dispatch(signOut())}>
-                <ListItemIcon>
-                  <ExitToAppIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Logout"} />
-              </ListItem>
-            </List>
           </div>
+          <Divider />
+          <List>
+            {menus.map((menu) => (
+              <ListItem
+                button
+                key={menu.id}
+                onClick={(e) => menu.func(e, menu.value)}
+              >
+                <ListItemIcon>{menu.icon}</ListItemIcon>
+                <ListItemText primary={menu.label} />
+              </ListItem>
+            ))}
+            <ListItem button key="logout" onClick={() => dispatch(signOut())}>
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Logout"} />
+            </ListItem>
+          </List>
         </div>
       </Drawer>
     </nav>
