@@ -8,3 +8,4 @@ export { default as ProductDetail } from "./ProductDetail";
 export { default as CartList } from "./CartList";
 export { default as OrderConfirm } from "./OrderConfirm";
 export { default as CartList2 } from "./CartList2";
+export { default as OrderConfirm2 } from "./OrderConfirm2";
