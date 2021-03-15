@@ -39,8 +39,8 @@ const HeaderMenus2 = (props) => {
               break;
 
             case "removed":
-              productsInCart.filter(
-                (productInCart) => productInCart.id !== change.doc.id
+              productsInCart = productsInCart.filter(
+                (productInCart) => productInCart.cartId !== change.doc.id
               );
               break;
 
