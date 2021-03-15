@@ -1,5 +1,5 @@
 import Router from "./Router";
-import { Header } from "./components/Header";
+import { Header, Header2 } from "./components/Header";
 import "./assets/reset.css";
 import "./assets/style.css";
 
