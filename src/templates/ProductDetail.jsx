@@ -53,31 +53,9 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const selector = useSelector((state) => state);
   const path = selector.router.location.pathname; // ReduxのStoreで管理しているルーティング(router)の情報の中にlocation.pathnameがある
-  const id = path.split("/product/")[1];
+  const productId = path.split("/product/")[1];
 
   // addProduct関数は実際には<SizeTable />に渡している。子コンポーネント内に渡す時はuseCallbackでコールバック関数をメモ化する
-  // const addProduct = useCallback(
-  //   (selectedSize) => {
-  //     const timestamp = FirebaseTimestamp.now();
-  //     dispatch(
-  //       addProductsToCart({
-  //         added_at: timestamp,
-  //         description: product.description,
-  //         gender: product.gender,
-  //         images: product.images,
-  //         name: product.name,
-  //         price: product.price,
-  //         productId: product.id,
-  //         quantity: 1,
-  //         size: selectedSize,
-  //       })
-  //     );
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [product]
-  // );
-  // // productが更新されたらaddProductも再生成する
-
   const addProduct = useCallback(
     (selectedSize) => {
       const timestamp = FirebaseTimestamp.now(); // サーバーで管理している現在の時刻をtimestamp型でget
@@ -95,14 +73,13 @@ const ProductDetail = () => {
           size: selectedSize,
         })
       );
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    },
-    [product]
+    }, // eslint-disable-next-line react-hooks/exhaustive-deps
+    [product] // productが更新されたらaddProductも再生成する
   );
 
   useEffect(() => {
     db.collection("products")
-      .doc(id)
+      .doc(productId)
       .get()
       .then((doc) => {
         const data = doc.data();
