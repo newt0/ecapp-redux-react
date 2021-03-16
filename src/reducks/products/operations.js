@@ -81,13 +81,12 @@ export const deleteProduct = (id) => {
   };
 };
 
-export const orderProduct = (productsInCart, total) => {
+export const orderProduct = (productsInCart, total_price) => {
   return async (dispatch, getState) => {
     const uid = getState().users.uid;
     const userRef = db.collection("users").doc(uid);
     const timestamp = FirebaseTimestamp.now();
 
-    let amount = 0;
     let products = {};
     let soldOutProducts = [];
 
@@ -156,7 +155,7 @@ export const orderProduct = (productsInCart, total) => {
           );
 
           const history = {
-            amount: amount,
+            amount: total_price,
             created_at: timestamp, //created_atとupdated_atは基本的に全てのデータに持たせる
             id: orderRef.id,
             products: products,

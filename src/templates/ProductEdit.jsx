@@ -88,7 +88,7 @@ const ProductEdit = () => {
     <section>
       <h2 className="u-text__headline u-text-center">キャストの登録・編集</h2>
       <div className="c-section-container">
-        {/* <ImageArea images={images} setImages={setImages} />
+        <ImageArea images={images} setImages={setImages} />
         <TextInput
           fullWidth={true}
           label={"NAME"}
@@ -132,7 +132,7 @@ const ProductEdit = () => {
           rows={1}
           value={price}
           type={"number"}
-        /> */}
+        />
         <SetSizesArea sizes={sizes} setSizes={setSizes} />
         <div className="module-spacer--small" />
         <div className="module-spacer--small" />
