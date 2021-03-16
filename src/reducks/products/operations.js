@@ -142,12 +142,14 @@ export const orderProduct = (productsInCart, total_price) => {
           : soldOutProducts[0]; // 一つだけ売り切れならそのままその商品名を返す
       alert(`大変申し訳ありません。${errorMessage}が在庫切れとなったため
       注文処理を中断しました`);
+      return false;
     } else {
       // 全て在庫あるなら注文処理を実行する
       batch
         .commit()
         .then(() => {
-          const orderRef = userRef.collection("orders").doc();
+          // 注文に成功したら注文履歴を作りたい
+          const orderRef = userRef.collection("orders").doc(); // 新しくdocを作る
           const date = timestamp.toDate(); // 今日の日付
           const shippingDate = FirebaseTimestamp.fromDate(
             // fromDateでtimestamp型のものからfirebase用のtimestampを作る
@@ -164,10 +166,13 @@ export const orderProduct = (productsInCart, total_price) => {
           };
 
           orderRef.set(history);
-          dispatch("/order/complete");
+          dispatch(push("/order/complete"));
         })
         .catch(() => {
-          alert("注文処理に失敗しました");
+          alert(
+            "注文処理に失敗しました。通信環境をご確認の上、もう一度お試しください"
+          );
+          return false;
         });
     }
   };
