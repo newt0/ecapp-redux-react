@@ -45,9 +45,7 @@ const OrderConfirm = () => {
   }, [productsInCart]); // 第二引数の値が変わらない限り再計算しない
 
   const shippingFee = (subtotal >= 10000) | (subtotal === 0) ? 0 : 210;
-
   const tax = subtotal * 0.1;
-
   const total = subtotal + shippingFee + tax;
 
   const order = useCallback(() => {
