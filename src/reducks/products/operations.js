@@ -170,6 +170,7 @@ export const orderProduct = (productsInCart, total_price) => {
         })
         .catch(() => {
           alert(
+            // 上のelseはbatch.commitの前なので注文処理を中断するが、ここはbatch.commit内なので注文処理は実行されつつエラーcatchしてる？
             "注文処理に失敗しました。通信環境をご確認の上、もう一度お試しください"
           );
           return false;
