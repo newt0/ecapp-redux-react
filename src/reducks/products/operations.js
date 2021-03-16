@@ -87,7 +87,7 @@ export const orderProduct = (productsInCart, total_price) => {
     const userRef = db.collection("users").doc(uid);
     const timestamp = FirebaseTimestamp.now();
 
-    let products = {};
+    let products = [];
     let soldOutProducts = [];
 
     const batch = db.batch();
@@ -115,14 +115,14 @@ export const orderProduct = (productsInCart, total_price) => {
         }
       });
 
-      products[product.productId] = {
+      products.push({
         // 今回注文したidを持つオブジェクトとして
         id: product.productId,
         images: product.images,
         name: product.name,
         price: product.price,
         size: product.size,
-      };
+      });
 
       batch.update(
         productsRef.doc(product.productId),
