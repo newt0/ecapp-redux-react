@@ -77,8 +77,10 @@ const ProductEdit = () => {
       .get()
       .then((snapshots) => {
         const list = [];
+
         snapshots.forEach((snapshot) => {
-          list.push(snapshot.data());
+          const data = snapshot.data();
+          list.push({ id: data.id, name: data.name });
         });
         setCategories(list);
       });

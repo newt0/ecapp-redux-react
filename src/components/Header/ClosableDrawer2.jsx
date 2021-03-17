@@ -80,6 +80,46 @@ const ClosableDrawer2 = (props) => {
     },
   ];
 
+  const [filters, setFilters] = useState([
+    {
+      func: selectMenu,
+      label: "全て",
+      id: "all",
+      value: "/",
+    },
+    {
+      func: selectMenu,
+      label: "メンズ",
+      id: "male",
+      value: "/?gender=male", // クエリパラメータを入れて、genderと言うキーに対してmaleと言うバリューをいれる
+    },
+    {
+      func: selectMenu,
+      label: "レディース",
+      id: "fermale",
+      value: "/?gender=female",
+    },
+  ]);
+
+  useEffect(() => {
+    db.collection("categories")
+      .orderBy("order", "asc")
+      .get()
+      .then((snapshots) => {
+        const list = [];
+        snapshots.forEach((snapshot) => {
+          const category = snapshot.data();
+          list.push({
+            func: selectMenu,
+            label: category.name,
+            id: category.id,
+            value: `?category=${category.id}`, // カテゴリーというクエリに対してcategory.idを与える
+          });
+          setFilters((prevState) => [...prevState, ...list]); // prevStateを消すと挙動が正常になる
+        });
+      });
+  }, []);
+
   return (
     <nav className={classes.drawer}>
       <Drawer
@@ -128,6 +168,14 @@ const ClosableDrawer2 = (props) => {
               </ListItemIcon>
               <ListItemText primary={"Logout"} />
             </ListItem>
+          </List>
+          <Divider />
+          <List>
+            {filters.map((filter) => (
+              <ListItem button key={filter.id}>
+                <ListItemText primary={filter.label} />
+              </ListItem>
+            ))}
           </List>
         </div>
       </Drawer>
