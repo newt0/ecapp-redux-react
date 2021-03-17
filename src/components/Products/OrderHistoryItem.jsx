@@ -33,15 +33,17 @@ const dateToString = (date) => {
 
 const OrderHistoryItem = ({ order }) => {
   const orderedDatetime = datetimeToString(order.updated_at.toDate()); // FSのtimestamp型をdate型に変換
-  // const shippingDate = dateToString(order.shipping_date);
+  const shippingDate = dateToString(order.shipping_date.toDate());
   const totalPrice = "￥" + order.amount.toLocaleString();
+
+  console.log("shipping_date->", order.shipping_date);
 
   return (
     <div>
       <div className="module-spacer--small" />
       <TextDetail label="注文ID" value={order.id} />
       <TextDetail label="注文日時" value={orderedDatetime} />
-      {/* <TextDetail label="発送予定日" value={shippingDate} /> */}
+      <TextDetail label="発送予定日" value={shippingDate} />
       <TextDetail label="注文金額" value={totalPrice} />
 
       <div className="module-spacer--extra-extra-small" />
