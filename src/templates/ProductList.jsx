@@ -26,8 +26,7 @@ const ProductList = () => {
 
   useEffect(() => {
     dispatch(fetchProducts(gender, category));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [query]);
 
   return (
     <section className="c-section-wrapin">

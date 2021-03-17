@@ -113,9 +113,10 @@ const ClosableDrawer2 = (props) => {
             func: selectMenu,
             label: category.name,
             id: category.id,
-            value: `?category=${category.id}`, // カテゴリーというクエリに対してcategory.idを与える
+            value: `/?category=${category.id}`, // カテゴリーというクエリに対してcategory.idを与える
           });
-          setFilters((prevState) => [...prevState, ...list]); // prevStateを消すと挙動が正常になる
+          setFilters((prevState) => [...prevState, ...list]);
+          // prevStateを消すと挙動が正常になる
         });
       });
   }, []);

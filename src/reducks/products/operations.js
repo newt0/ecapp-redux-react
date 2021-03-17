@@ -65,6 +65,29 @@ export const fetchProducts = (gender, category) => {
   };
 };
 
+// export const fetchProducts = (gender, category) => {
+//   return async (dispatch) => {
+//     let query = productsRef.orderBy("updated_at", "desc");
+//     query =
+//       gender !== ""
+//         ? query.where("gender", "==", gender) // 指定されているgenderのproductだけを返す
+//         : query;
+//     query =
+//       category !== ""
+//         ? query.where("category", "==", category) // categoryフィールドがクエリと一致するものだけを返す
+//         : query; // queryが空ならそのまま返す
+
+//     query.get().then((snapshots) => {
+//       const productList = [];
+//       snapshots.forEach((snapshot) => {
+//         const product = snapshot.data();
+//         productList.push(product);
+//       });
+//       dispatch(fetchProductsAction(productList));
+//     });
+//   };
+// };
+
 export const deleteProduct = (id) => {
   return async (dispatch, getState) => {
     // getStateでopration内で現在のStoreの情報を取得できる
