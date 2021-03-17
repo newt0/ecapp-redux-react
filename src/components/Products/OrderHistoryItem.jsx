@@ -3,6 +3,7 @@ import Divider from "@material-ui/core/Divider";
 import { OrderedProducts } from "./index";
 // import { datetimeToString, dateToString } from "../../function/common";
 import { TextDetail } from "../UIkit";
+import { orderProduct } from "../../reducks/products/operations";
 
 // Date型を受け取ってString型にする
 const datetimeToString = (date) => {
@@ -45,6 +46,10 @@ const OrderHistoryItem = ({ order }) => {
       <TextDetail label="注文日時" value={orderedDatetime} />
       <TextDetail label="発送予定日" value={shippingDate} />
       <TextDetail label="注文金額" value={totalPrice} />
+
+      {order.products.length > 0 && (
+        <OrderedProducts products={order.products} />
+      )}
 
       <div className="module-spacer--extra-extra-small" />
       <Divider />

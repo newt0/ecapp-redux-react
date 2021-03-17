@@ -8,3 +8,4 @@ export { default as SetSizesArea2 } from "./SetSizesArea2";
 export { default as CartListItem } from "./CartListItem";
 export { default as CartListItem2 } from "./CartListItem2";
 export { default as OrderHistoryItem } from "./OrderHistoryItem";
+export { default as OrderedProducts } from "./OrderedProducts";

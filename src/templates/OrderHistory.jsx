@@ -28,6 +28,7 @@ const OrderHistory = () => {
 
   useEffect(() => {
     dispatch(fetchOrdersHistory());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log("orders->", orders);
