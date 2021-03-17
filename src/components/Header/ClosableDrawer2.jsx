@@ -115,10 +115,10 @@ const ClosableDrawer2 = (props) => {
             id: category.id,
             value: `/?category=${category.id}`, // カテゴリーというクエリに対してcategory.idを与える
           });
-          setFilters((prevState) => [...prevState, ...list]);
-          // prevStateを消すと挙動が正常になる
         });
+        setFilters((prevState) => [...prevState, ...list]); // prevStateを消すと挙動が正常になる
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
