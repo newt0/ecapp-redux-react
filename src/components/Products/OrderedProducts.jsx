@@ -31,7 +31,7 @@ const OrderedProducts = ({ products }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const goToProductDetail = useCallback((id) => {
-    dispatch(push("/product" + id));
+    dispatch(push("/product/" + id));
   }, []);
 
   return (
