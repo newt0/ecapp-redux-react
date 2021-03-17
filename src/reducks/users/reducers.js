@@ -17,6 +17,11 @@ export const UsersReducer = (state = initialState.users, action) => {
         ...state,
         cart: [...action.payload], // cartは配列なのでスプレッド構文で新しく配列を作る
       };
+    case Actions.FETCH_ORDERS_HISTORY:
+      return {
+        ...state,
+        orders: [...action.payload],
+      };
     default:
       return state;
   }

@@ -32,6 +32,14 @@ export const fetchProductsInCartAction = (products) => {
   };
 };
 
+export const FETCH_ORDERS_HISTORY = "FETCH_ORDERS_HISTORY";
+export const fetchOrdersHistoryAction = (history) => {
+  return {
+    type: "FETCH_ORDERS_HISTORY",
+    payload: history,
+  };
+};
+
 // ## Actionsの役割
 // =アプリからStoreへデータを送るためのpayloadを渡す役割
 // ->アプリから受け取ったデータをReducersへ渡す

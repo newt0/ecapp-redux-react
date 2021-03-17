@@ -9,6 +9,7 @@ const initialState = {
     username: "",
     role: "",
     cart: [], // firestoreではusersのサブコレクション
+    orders: [],
   },
 };
 
