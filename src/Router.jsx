@@ -11,6 +11,7 @@ import {
   CartList2,
   OrderConfirm,
   OrderConfirm2,
+  OrderHistory,
 } from "./templates";
 import Auth from "./Auth";
 
@@ -28,6 +29,7 @@ const Router = () => {
 
         <Route exact path={"/cart"} component={CartList2} />
         <Route exact path={"/order/confirm"} component={OrderConfirm2} />
+        <Route exact path={"/order/history"} component={OrderHistory} />
       </Auth>
     </Switch>
   );
