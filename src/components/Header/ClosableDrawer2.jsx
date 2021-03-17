@@ -174,7 +174,10 @@ const ClosableDrawer2 = (props) => {
           <List>
             {filters.map((filter) => (
               <ListItem button key={filter.id}>
-                <ListItemText primary={filter.label} />
+                <ListItemText
+                  primary={filter.label}
+                  onClick={(event) => filter.func(event, filter.value)} // eventはprops.onClose(event)に渡す値　filter.valueはdispatch(push(path))に渡す値
+                />
               </ListItem>
             ))}
           </List>
