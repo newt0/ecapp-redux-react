@@ -21,7 +21,7 @@ const ProductEdit = () => {
     [images, setImages] = useState([]),
     [category, setCategory] = useState(""),
     [categories, setCategories] = useState([]),
-    [gender, setGender] = useState(""),
+    [gender, setGender] = useState(0),
     [price, setPrice] = useState(""),
     [sizes, setSizes] = useState([]);
 
@@ -46,12 +46,7 @@ const ProductEdit = () => {
     [setPrice]
   );
 
-  const genders = [
-    { id: "all", name: "ALL GENDERS" },
-    { id: "male", name: "MALE" },
-    { id: "female", name: "FEMALE" },
-    { id: "others", name: "OTHERS" },
-  ];
+  const genders = [0, 1, 2, 3];
 
   useEffect(() => {
     if (id !== "") {

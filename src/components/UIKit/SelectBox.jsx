@@ -23,8 +23,8 @@ const SelectBox = (props) => {
       >
         {props.options.map((value) => {
           return (
-            <MenuItem key={value.id} value={value.id}>
-              {value.name}
+            <MenuItem key={value} value={value}>
+              {value}
             </MenuItem>
           );
         })}
